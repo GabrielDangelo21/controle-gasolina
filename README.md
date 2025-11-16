@@ -10,13 +10,18 @@ Aplicativo web para controlar trocas de gasolina por serviços e produtos.
 - ✅ Histórico completo com filtros por período
 - ✅ Design responsivo para mobile e desktop
 - ✅ Interface em português
+- ✅ Deploy online na Vercel 🚀
 
 ## Stack Tecnológica
 
 - **Frontend**: Next.js 15, TypeScript, Tailwind CSS, shadcn/ui
 - **Backend**: Next.js API Routes, Prisma ORM
-- **Database**: SQLite
+- **Database**: SQLite (dev) / PostgreSQL (prod)
 - **Deploy**: Vercel
+
+## Acesso Online
+
+🌐 **URL do aplicativo**: https://controle-gasolina-gabrieldangelo21.vercel.app
 
 ## Deploy na Vercel
 
