@@ -1,0 +1,4 @@
+# Adicionar para deploy no Railway
+web: npm run build
+# Configurar variáveis de ambiente no Railway
+DATABASE_URL: $DATABASE_URL
