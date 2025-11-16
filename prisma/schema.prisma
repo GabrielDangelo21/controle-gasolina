@@ -13,20 +13,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Pessoa {
+  id          String   @id @default(cuid())
+  nome        String
+  observacoes String?
+  saldo       Float    @default(0) // Saldo atual em euros
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relacionamento com lançamentos
+  lancamentos Lancamento[]
+  
+  @@map("pessoas")
 }
 
-model Post {
-  id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Lancamento {
+  id          String   @id @default(cuid())
+  pessoaId    String
+  data        DateTime
+  tipo        TipoLancamento
+  valor       Float    // Valor em euros
+  descricao   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relacionamento com pessoa
+  pessoa      Pessoa   @relation(fields: [pessoaId], references: [id], onDelete: Cascade)
+  
+  @@map("lancamentos")
+}
+
+enum TipoLancamento {
+  DEBITO  // Quando eu pago gasolina (aumenta saldo dela)
+  CREDITO // Quando recebo serviço (diminui saldo dela)
 }
